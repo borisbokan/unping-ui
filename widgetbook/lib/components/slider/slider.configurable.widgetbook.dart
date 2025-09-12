@@ -34,16 +34,13 @@ class _ConfigurableSlider extends StatefulWidget {
 }
 
 class _ConfigurableSliderState extends State<_ConfigurableSlider> {
-  double _sliderValue = 50.0;
+  dynamic? _sliderValue;
 
   @override
   Widget build(BuildContext context) {
     return BBSlider(
-      value: _sliderValue,
       onChanged: (value) {
-        setState(() {
-          _sliderValue = value;
-        });
+        print(value.round());
       },
     );
   }

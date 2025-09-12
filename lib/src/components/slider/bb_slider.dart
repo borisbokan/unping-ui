@@ -3,27 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class BBSlider extends StatefulWidget {
-  const BBSlider({
+  BBSlider({
     super.key,
-    this.min = 0,
-    this.max = 200,
-    required this.value,
     required this.onChanged,
-    this.height = 56,
-    this.trackHeight = 6,
-    this.handleRadius = 12,
-    this.paddingHorizontal = 36, // space for min/max labels
   });
 
-  final double min;
-  final double max;
-  final double value;
-  final ValueChanged<double> onChanged;
-
-  final double height;
-  final double trackHeight;
-  final double handleRadius;
-  final double paddingHorizontal;
+  Function(dynamic) onChanged;
 
   @override
   State<BBSlider> createState() => _BBSliderState();
@@ -38,7 +23,7 @@ class _BBSliderState extends State<BBSlider> {
   void initState() {
     super.initState();
 
-    _currentValue = 25;
+    _currentValue = _currentValue == null ? 25 : _currentValue;
   }
 
   @override
@@ -85,6 +70,7 @@ class _BBSliderState extends State<BBSlider> {
                     _currentValue =
                         (_currentValue + d.delta.dx).clamp(0.0, 200);
                   });
+                  widget.onChanged(_currentValue);
                 },
                 child: Container(
                     key: Key("xway"),
