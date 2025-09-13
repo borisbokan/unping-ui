@@ -34,7 +34,7 @@ class _ConfigurableSlider extends StatefulWidget {
 }
 
 class _ConfigurableSliderState extends State<_ConfigurableSlider> {
-  dynamic? _sliderValue;
+  dynamic _sliderValue;
 
   @override
   Widget build(BuildContext context) {
