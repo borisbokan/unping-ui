@@ -12,6 +12,28 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   path: 'Components/Slider/Configurable',
 )
 Widget buildConfigurableSlider(BuildContext context) {
+  final sliderType = context.knobs.list(
+    label: 'Slider Type',
+    options: [
+      'base',
+      'customVal',
+    ],
+    initialOption: 'base',
+  );
+
+  switch (sliderType) {
+    case 'base':
+      return BBSlider(
+        type: BBSliderType.basic.name,
+        onChanged: (value) => print(value.round()),
+      );
+    case 'customVal':
+      return BBSlider(
+        type: BBSliderType.customVal.name,
+        onChanged: (value) => print(value.round()),
+      );
+  }
+
   return UnpingUIContainer(
     breadcrumbs: ['Components', 'Slider', 'Configurable'],
     child: Column(
@@ -34,11 +56,10 @@ class _ConfigurableSlider extends StatefulWidget {
 }
 
 class _ConfigurableSliderState extends State<_ConfigurableSlider> {
-  dynamic _sliderValue;
-
   @override
   Widget build(BuildContext context) {
     return BBSlider(
+      type: BBSliderType.customVal.name,
       onChanged: (value) {
         print(value.round());
       },
